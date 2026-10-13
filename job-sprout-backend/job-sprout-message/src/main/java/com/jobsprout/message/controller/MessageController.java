@@ -1,0 +1,3 @@
+package com.jobsprout.message.controller;
+import com.jobsprout.common.result.Result; import com.jobsprout.message.entity.MessageEntity; import com.jobsprout.message.service.MessageService; import org.springframework.web.bind.annotation.*; import java.util.List;
+@RestController @RequestMapping("/api/message") public class MessageController { private final MessageService service; public MessageController(MessageService service){this.service=service;} @GetMapping("/health") public Result<String> health(){return Result.success("job-sprout-message is running");} @GetMapping public Result<List<MessageEntity>> list(){return Result.success(service.list());} @PostMapping public Result<Boolean> create(@RequestBody MessageEntity body){return Result.success(service.save(body));} }

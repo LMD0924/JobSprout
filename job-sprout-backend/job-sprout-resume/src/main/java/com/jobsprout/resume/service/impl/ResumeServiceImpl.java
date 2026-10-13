@@ -1,0 +1,3 @@
+package com.jobsprout.resume.service.impl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl; import com.jobsprout.resume.entity.ResumeEntity; import com.jobsprout.resume.mapper.ResumeMapper; import com.jobsprout.resume.service.ResumeService; import org.springframework.stereotype.Service;
+@Service public class ResumeServiceImpl extends ServiceImpl<ResumeMapper, ResumeEntity> implements ResumeService {}

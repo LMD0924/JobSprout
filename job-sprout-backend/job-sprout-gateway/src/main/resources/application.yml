@@ -1,0 +1,38 @@
+server:
+  port: 8080
+spring:
+  config:
+    import: optional:nacos:
+  application:
+    name: job-sprout-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: public
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: public
+        file-extension: yaml
+    gateway:
+      routes:
+        - id: auth-service
+          uri: lb://job-sprout-auth
+          predicates: [Path=/api/auth/**]
+        - id: user-service
+          uri: lb://job-sprout-user
+          predicates: [Path=/api/user/**]
+        - id: job-service
+          uri: lb://job-sprout-job
+          predicates: [Path=/api/job/**]
+        - id: resume-service
+          uri: lb://job-sprout-resume
+          predicates: [Path=/api/resume/**]
+        - id: message-service
+          uri: lb://job-sprout-message
+          predicates: [Path=/api/message/**]
+        - id: admin-service
+          uri: lb://job-sprout-admin
+          predicates: [Path=/api/admin/**]
+
+

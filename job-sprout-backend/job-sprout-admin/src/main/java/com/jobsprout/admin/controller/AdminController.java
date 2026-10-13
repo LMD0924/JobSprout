@@ -1,0 +1,3 @@
+package com.jobsprout.admin.controller;
+import com.jobsprout.common.result.Result; import com.jobsprout.admin.entity.AdminEntity; import com.jobsprout.admin.service.AdminService; import org.springframework.web.bind.annotation.*; import java.util.List;
+@RestController @RequestMapping("/api/admin") public class AdminController { private final AdminService service; public AdminController(AdminService service){this.service=service;} @GetMapping("/health") public Result<String> health(){return Result.success("job-sprout-admin is running");} @GetMapping public Result<List<AdminEntity>> list(){return Result.success(service.list());} @PostMapping public Result<Boolean> create(@RequestBody AdminEntity body){return Result.success(service.save(body));} }

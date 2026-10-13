@@ -1,0 +1,1 @@
+<template><div class="simple"><el-card><h2>注册</h2><p>注册页面骨架已就绪，后续可补充学生与企业字段。</p><el-button @click="$router.push('/login')">返回登录</el-button></el-card></div></template><style scoped>.simple{min-height:100vh;display:grid;place-items:center}</style>

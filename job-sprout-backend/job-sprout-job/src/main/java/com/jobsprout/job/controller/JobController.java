@@ -1,0 +1,3 @@
+package com.jobsprout.job.controller;
+import com.jobsprout.common.result.Result; import com.jobsprout.job.entity.JobEntity; import com.jobsprout.job.service.JobService; import org.springframework.web.bind.annotation.*; import java.util.List;
+@RestController @RequestMapping("/api/job") public class JobController { private final JobService service; public JobController(JobService service){this.service=service;} @GetMapping("/health") public Result<String> health(){return Result.success("job-sprout-job is running");} @GetMapping public Result<List<JobEntity>> list(){return Result.success(service.list());} @PostMapping public Result<Boolean> create(@RequestBody JobEntity body){return Result.success(service.save(body));} }

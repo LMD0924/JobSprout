@@ -1,0 +1,3 @@
+package com.jobsprout.user.controller;
+import com.jobsprout.common.result.Result; import com.jobsprout.user.entity.UserEntity; import com.jobsprout.user.service.UserService; import org.springframework.web.bind.annotation.*; import java.util.List;
+@RestController @RequestMapping("/api/user") public class UserController { private final UserService service; public UserController(UserService service){this.service=service;} @GetMapping("/health") public Result<String> health(){return Result.success("job-sprout-user is running");} @GetMapping public Result<List<UserEntity>> list(){return Result.success(service.list());} @PostMapping public Result<Boolean> create(@RequestBody UserEntity body){return Result.success(service.save(body));} }

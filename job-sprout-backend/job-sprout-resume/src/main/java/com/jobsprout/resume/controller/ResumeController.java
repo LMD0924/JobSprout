@@ -1,0 +1,3 @@
+package com.jobsprout.resume.controller;
+import com.jobsprout.common.result.Result; import com.jobsprout.resume.entity.ResumeEntity; import com.jobsprout.resume.service.ResumeService; import org.springframework.web.bind.annotation.*; import java.util.List;
+@RestController @RequestMapping("/api/resume") public class ResumeController { private final ResumeService service; public ResumeController(ResumeService service){this.service=service;} @GetMapping("/health") public Result<String> health(){return Result.success("job-sprout-resume is running");} @GetMapping public Result<List<ResumeEntity>> list(){return Result.success(service.list());} @PostMapping public Result<Boolean> create(@RequestBody ResumeEntity body){return Result.success(service.save(body));} }

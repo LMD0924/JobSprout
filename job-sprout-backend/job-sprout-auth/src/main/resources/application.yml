@@ -1,0 +1,33 @@
+server:
+  port: 8081
+spring:
+  config:
+    import: optional:nacos:
+  application:
+    name: job-sprout-auth
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/job_sprout?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: public
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: public
+        file-extension: yaml
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+knife4j:
+  enable: true
+
+
+

@@ -1,0 +1,3 @@
+package com.jobsprout.message.service.impl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl; import com.jobsprout.message.entity.MessageEntity; import com.jobsprout.message.mapper.MessageMapper; import com.jobsprout.message.service.MessageService; import org.springframework.stereotype.Service;
+@Service public class MessageServiceImpl extends ServiceImpl<MessageMapper, MessageEntity> implements MessageService {}
