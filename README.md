@@ -15,7 +15,7 @@
 2. 创建 MySQL 数据库并执行 [job_sprout.sql](docs/sql/job_sprout.sql)。脚本默认连接配置为 root/123456，可在各服务的 `application.yml` 中修改。
 3. 编译后端：在 `job-sprout-backend` 目录执行 `mvn clean package`。
 4. 按顺序启动服务：认证 8081、用户 8082、职位 8083、简历 8084、消息 8085、管理 8086，最后启动网关 8080。每个服务启动类位于对应模块的 `src/main/java`。
-5. 启动前端：在 `job-sprout-web` 执行 `npm install` 和 `npm run dev`，访问 http://localhost:5173。
+5. 启动前端：在 `job-sprout-web` 执行 `npm install` 和 `npm run dev`，访问 http://localhost:5173。项目已接入 Tailwind CSS 3，配置文件为 `tailwind.config.js` 和 `postcss.config.js`。
 
 ## 服务地址
 
