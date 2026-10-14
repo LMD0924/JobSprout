@@ -11,7 +11,7 @@
 
 ## 启动步骤
 
-1. 启动 Nacos 2.3.x：Linux/macOS 执行 `sh startup.sh -m standalone`，Windows 执行 `startup.cmd -m standalone`，控制台默认地址为 http://127.0.0.1:8848/nacos，账号密码通常为 nacos/nacos。
+1. 启动 Nacos 3.x：Linux/macOS 执行 `sh startup.sh -m standalone`，Windows 执行 `startup.cmd -m standalone`，控制台默认地址为 http://127.0.0.1:8080，账号密码通常为 nacos/nacos。
 2. 创建 MySQL 数据库并执行 [job_sprout.sql](docs/sql/job_sprout.sql)。脚本默认连接配置为 root/123456，可在各服务的 `application.yml` 中修改。
 3. 编译后端：在 `job-sprout-backend` 目录执行 `mvn clean package`。
 4. 按顺序启动服务：认证 8081、用户 8082、职位 8083、简历 8084、消息 8085、管理 8086，最后启动网关 8080。每个服务启动类位于对应模块的 `src/main/java`。

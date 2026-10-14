@@ -1,0 +1,12 @@
+:root {
+  --brand: #5B4BE0; --brand-2: #4A3BC9; --accent: #7C6BFF;
+  --bg: #F4F5FA; --card: #FFFFFF; --text: #14172A; --text-soft: #575C75;
+  --text-mute: #969AB0; --line: rgba(91, 75, 224, .12);
+  --nav-bg: rgba(255, 255, 255, .78); --shadow-brand: rgba(91, 75, 224, .18);
+}
+html.dark {
+  --brand: #7C6BFF; --brand-2: #6B5AE0; --accent: #A78BFA;
+  --bg: #000000; --card: #0A0A0F; --text: #F2F3F8; --text-soft: #9DA2B8;
+  --text-mute: #5F6478; --line: rgba(124, 107, 255, .18);
+  --nav-bg: rgba(0, 0, 0, .78); --shadow-brand: rgba(124, 107, 255, .3);
+}

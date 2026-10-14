@@ -1,18 +1,19 @@
-server:
-  port: 8080
 spring:
-  config:
-    import: optional:nacos:
+  main:
+    web-application-type: reactive
   application:
     name: job-sprout-gateway
+  config:
+    import:
+      - optional:nacos:job-sprout-gateway?group=DEFAULT_GROUP&refreshEnabled=true
   cloud:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
-        namespace: public
+        group: DEFAULT_GROUP
       config:
         server-addr: 127.0.0.1:8848
-        namespace: public
+        group: DEFAULT_GROUP
         file-extension: yaml
     gateway:
       routes:
@@ -34,5 +35,3 @@ spring:
         - id: admin-service
           uri: lb://job-sprout-admin
           predicates: [Path=/api/admin/**]
-
-
