@@ -1,3 +1,6 @@
+server:
+  port: 8500
+
 spring:
   main:
     web-application-type: reactive

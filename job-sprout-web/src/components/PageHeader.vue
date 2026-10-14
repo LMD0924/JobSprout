@@ -4,7 +4,7 @@
     <button v-if="actionText" class="brand-button" @click="emit('action')">{{ actionText }}</button>
   </div>
 </template>
-<script setup lang="ts">
-defineProps<{ title: string; description?: string; actionText?: string }>()
-const emit = defineEmits<{ action: [] }>()
+<script setup>
+defineProps({ title: String, description: String, actionText: String })
+const emit = defineEmits(['action'])
 </script>

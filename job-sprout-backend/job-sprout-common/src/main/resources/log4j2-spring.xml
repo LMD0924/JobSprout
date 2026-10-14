@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout disableAnsi="false" pattern="%clr{%d{yyyy-MM-dd HH:mm:ss.SSS}}{faint} %clr{[%thread]}{magenta} %clr{%-5level} %clr{%logger{50}}{cyan} %clr{-}{faint} %msg%n"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <!-- 业务日志 -->
+        <Logger name="com.jobsprout" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <!-- Spring Boot 启动日志 -->
+        <Logger name="org.springframework.boot" level="INFO"/>
+        <!-- Spring Web -->
+        <Logger name="org.springframework.web" level="INFO"/>
+        <!-- Spring Cloud Gateway -->
+        <Logger name="org.springframework.cloud.gateway" level="INFO"/>
+        <!-- Spring Cloud -->
+        <Logger name="org.springframework.cloud" level="INFO"/>
+        <!-- 其他 Spring 框架 -->
+        <Logger name="org.springframework" level="WARN"/>
+
+        <!-- Nacos -->
+        <Logger name="com.alibaba.nacos" level="INFO"/>
+
+        <!-- MyBatis-Plus SQL -->
+        <Logger name="com.baomidou.mybatisplus" level="DEBUG"/>
+
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

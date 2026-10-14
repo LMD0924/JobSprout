@@ -1,5 +1,5 @@
 <template><aside class="sidebar"><div class="mb-5 px-3 text-xs font-semibold uppercase tracking-wider text-slate-400">工作台</div><nav class="space-y-1"><router-link v-for="item in items" :key="item.path" :to="item.path" class="side-link"><component :is="item.icon" class="h-4 w-4" />{{ item.label }}</router-link></nav></aside></template>
-<script setup lang="ts">
+<script setup>
 import { computed } from 'vue'; import { Briefcase, ChatDotRound, DataAnalysis, Document, House, User, UserFilled } from '@element-plus/icons-vue'; import { useUserStore } from '../store/user'
 const user=useUserStore(); const common=[{label:'概览',path:'/profile',icon:House},{label:'个人中心',path:'/profile',icon:User},{label:'消息中心',path:'/message',icon:ChatDotRound}]; const items=computed(()=>{ if(user.role==='ADMIN') return [{label:'后台首页',path:'/admin',icon:DataAnalysis},{label:'用户管理',path:'/admin/user',icon:UserFilled},{label:'职位审核',path:'/admin/job',icon:Briefcase},{label:'数据统计',path:'/admin/stat',icon:DataAnalysis}]; if(user.role==='COMPANY') return [{label:'企业中心',path:'/company',icon:House},{label:'发布职位',path:'/company/job-publish',icon:Briefcase},...common]; return [{label:'我的简历',path:'/resume',icon:Document},{label:'投递记录',path:'/apply',icon:Briefcase},...common]})
 </script>

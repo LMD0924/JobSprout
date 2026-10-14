@@ -1,5 +1,5 @@
 <template><button class="theme-toggle" type="button" :aria-label="theme.isDark ? '切换浅色主题' : '切换深色主题'" @click="theme.toggleTheme"><Sunny v-if="theme.isDark" /><Moon v-else /></button></template>
-<script setup lang="ts">
+<script setup>
 import { Moon, Sunny } from '@element-plus/icons-vue'
 import { useThemeStore } from '../store/theme'
 const theme = useThemeStore()

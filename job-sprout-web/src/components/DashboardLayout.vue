@@ -4,7 +4,7 @@
     <div class="dashboard-body"><AppSidebar /><main class="min-w-0 flex-1 p-6 lg:p-8"><slot /></main></div>
   </div>
 </template>
-<script setup lang="ts">
+<script setup>
 import AppHeader from './AppHeader.vue'
 import AppSidebar from './AppSidebar.vue'
 </script>

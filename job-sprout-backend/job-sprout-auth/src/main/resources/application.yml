@@ -1,3 +1,6 @@
+server:
+  port: 8081
+
 spring:
   application:
     name: job-sprout-auth
@@ -5,6 +8,11 @@ spring:
     import:
       - optional:nacos:job-sprout-auth?group=DEFAULT_GROUP&refreshEnabled=true
       - optional:nacos:job-sprout-common?group=DEFAULT_GROUP&refreshEnabled=true
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/job_sprout?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
   cloud:
     nacos:
       discovery:
@@ -14,3 +22,17 @@ spring:
         server-addr: 127.0.0.1:8848
         group: DEFAULT_GROUP
         file-extension: yaml
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+jwt:
+  secret: JobSproutJwtSecretKeyChangeInProduction2026
+  expire: 604800000
+  header: Authorization
+  prefix: Bearer 

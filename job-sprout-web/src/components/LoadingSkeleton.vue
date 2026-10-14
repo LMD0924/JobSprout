@@ -6,6 +6,6 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
-withDefaults(defineProps<{ type?: 'card' | 'list'; count?: number }>(), { type: 'card', count: 3 })
+<script setup>
+defineProps({ type: { type: String, default: 'card' }, count: { type: Number, default: 3 } })
 </script>

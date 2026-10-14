@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useUserStore } from '../store/user';
 const routes = [
-    { path: '/', redirect: '/home' },
+    { path: '/', redirect: '/intro' },
+    { path: '/intro', name: 'Intro', component: () => import('../views/home/index.vue'), meta: { public: true, title: '职芽 - 介绍' } },
     { path: '/login', name: 'Login', component: () => import('../views/login/index.vue'), meta: { public: true, title: '登录' } },
     { path: '/register', name: 'Register', component: () => import('../views/register/index.vue'), meta: { public: true, title: '注册' } },
-    { path: '/home', name: 'Home', component: () => import('../views/home/index.vue'), meta: { title: '首页' } },
-    { path: '/job/list', name: 'JobList', component: () => import('../views/job/list.vue'), meta: { title: '职位列表' } },
-    { path: '/job/detail/:id', name: 'JobDetail', component: () => import('../views/job/detail.vue'), meta: { title: '职位详情' } },
+    { path: '/job/list', name: 'JobList', component: () => import('../views/job/list.vue'), meta: { public: true, title: '职位列表' } },
+    { path: '/job/detail/:id', name: 'JobDetail', component: () => import('../views/job/detail.vue'), meta: { public: true, title: '职位详情' } },
     { path: '/resume', name: 'Resume', component: () => import('../views/PlaceholderPage.vue'), meta: { title: '我的简历', roles: ['STUDENT'] } },
     { path: '/resume/edit', name: 'ResumeEdit', component: () => import('../views/PlaceholderPage.vue'), meta: { title: '编辑简历', roles: ['STUDENT'] } },
     { path: '/apply', name: 'Apply', component: () => import('../views/PlaceholderPage.vue'), meta: { title: '投递记录', roles: ['STUDENT'] } },
@@ -21,8 +21,15 @@ const routes = [
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('../views/PlaceholderPage.vue'), meta: { public: true, title: '页面不存在' } }
 ];
 const router = createRouter({ history: createWebHistory(), routes, scrollBehavior: () => ({ top: 0 }) });
-router.beforeEach((to) => { const user = useUserStore(); if (to.meta.public)
-    return true; if (!user.token)
-    return { path: '/login', query: { redirect: to.fullPath } }; const roles = to.meta.roles; if (roles?.length && !roles.includes(String(user.role)))
-    return { path: '/home' }; return true; });
+router.beforeEach((to) => {
+    const user = useUserStore();
+    if (to.meta.public)
+        return true;
+    if (!user.token)
+        return { path: '/login', query: { redirect: to.fullPath } };
+    const roles = to.meta.roles;
+    if (roles?.length && !roles.includes(String(user.role)))
+        return { path: '/intro' };
+    return true;
+});
 export default router;

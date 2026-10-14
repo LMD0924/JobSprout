@@ -30,11 +30,12 @@ CREATE TABLE IF NOT EXISTS message (
   id BIGINT PRIMARY KEY AUTO_INCREMENT, sender_id BIGINT NOT NULL, receiver_id BIGINT NOT NULL, content VARCHAR(2000) NOT NULL, message_type VARCHAR(20) DEFAULT 'TEXT', is_read TINYINT DEFAULT 0, create_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, update_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, deleted TINYINT NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO sys_user (username,password,real_name,role) VALUES
- ('student01','123456','张同学','STUDENT'),('company01','123456','职芽科技','COMPANY'),('admin','123456','系统管理员','ADMIN')
+INSERT INTO sys_user (username,password,nickname,role) VALUES
+ ('student01','$2a$10$M0zuw/foBL0tuF4QisXP1eAzGmRyjkINkVqKLTAIvv1Bg3xzuCN2u','张同学','STUDENT'),('company01','$2a$10$M0zuw/foBL0tuF4QisXP1eAzGmRyjkINkVqKLTAIvv1Bg3xzuCN2u','职芽科技','COMPANY'),('admin','$2a$10$M0zuw/foBL0tuF4QisXP1eAzGmRyjkINkVqKLTAIvv1Bg3xzuCN2u','系统管理员','ADMIN')
 ON DUPLICATE KEY UPDATE username=username;
 INSERT INTO job_category (name,sort) VALUES ('Java开发',1),('前端开发',2),('产品运营',3),('实习岗位',4)
 ON DUPLICATE KEY UPDATE name=name;
 INSERT INTO student_info (user_id,school,major,education,graduation_year) SELECT id,'示例大学','软件工程','本科',2027 FROM sys_user WHERE username='student01' AND NOT EXISTS (SELECT 1 FROM student_info);
 INSERT INTO company_info (user_id,company_name,industry,address,audit_status) SELECT id,'职芽科技有限公司','互联网','上海','APPROVED' FROM sys_user WHERE username='company01' AND NOT EXISTS (SELECT 1 FROM company_info);
 INSERT INTO job (company_id,category_id,title,description,requirements,salary_min,salary_max,city,status,publish_time) SELECT c.id,1,'Java开发实习生','参与后端服务开发，协助完成接口设计与测试。','熟悉 Java，了解 Spring Boot，有良好学习能力。',3000,5000,'上海','PUBLISHED',NOW() FROM company_info c WHERE c.company_name='职芽科技有限公司' AND NOT EXISTS (SELECT 1 FROM job);
+

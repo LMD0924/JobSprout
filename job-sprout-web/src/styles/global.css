@@ -21,3 +21,39 @@
 
 .fade-up-enter-active, .fade-up-leave-active { transition: opacity .25s ease, transform .25s ease; }
 .fade-up-enter-from, .fade-up-leave-to { opacity: 0; transform: translateY(8px); }
+
+/* 自定义 ElNotification 样式 */
+.sprout-notification {
+  border-radius: 16px !important;
+  border: 1px solid var(--line) !important;
+  background: var(--card) !important;
+  box-shadow: 0 16px 48px -12px rgba(0, 0, 0, .15) !important;
+  padding: 16px 20px !important;
+  min-width: 320px !important;
+  backdrop-filter: blur(20px) !important;
+}
+.sprout-notification .el-notification__title {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: var(--text) !important;
+}
+.sprout-notification .el-notification__content {
+  font-size: 13px !important;
+  color: var(--text-soft) !important;
+  margin-top: 4px !important;
+}
+.sprout-notification.el-notification--success {
+  border-left: 4px solid #67c23a !important;
+}
+.sprout-notification.el-notification--error {
+  border-left: 4px solid #f56c6c !important;
+}
+.sprout-notification.el-notification--warning {
+  border-left: 4px solid #e6a23c !important;
+}
+.sprout-notification.el-notification--info {
+  border-left: 4px solid var(--brand) !important;
+}
+.sprout-notification .el-notification__icon {
+  font-size: 22px !important;
+}

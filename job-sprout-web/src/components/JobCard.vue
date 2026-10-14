@@ -5,12 +5,11 @@
     <div class="mt-5 flex items-center justify-between border-t border-brand/10 pt-4"><span class="text-xs text-slate-400">{{ job.createTime || '刚刚发布' }}</span><button class="brand-button text-sm" @click="emit('apply', job)">投递职位</button></div>
   </article>
 </template>
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 import { StarFilled } from '@element-plus/icons-vue'
-export interface Job { id?: number | string; title: string; companyName: string; companyLogo?: string; salary?: string; city?: string; education?: string; experience?: string; tags?: string[]; description?: string; requirement?: string; createTime?: string }
-defineProps<{ job: Job }>()
-const emit = defineEmits<{ apply: [job: Job] }>()
+defineProps({ job: { type: Object, required: true } })
+const emit = defineEmits(['apply'])
 const favorite = ref(false)
 </script>
 <style scoped>.job-card{border:1px solid var(--line);border-radius:20px;background:var(--card);padding:20px;transition:.3s}.job-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -24px var(--shadow-brand)}.company-logo{display:flex;height:44px;width:44px;flex:none;align-items:center;justify-content:center;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--accent));color:#fff;font-weight:800}.favorite{color:var(--text-mute);transition:.2s}.favorite.active,.favorite:hover{color:var(--brand)}.salary{font-size:14px;font-weight:700;color:var(--brand)}.meta,.tag{border-radius:8px;background:color-mix(in srgb,var(--text-mute) 10%,transparent);padding:4px 8px;font-size:12px;color:var(--text-soft)}</style>

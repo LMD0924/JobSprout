@@ -6,8 +6,8 @@
     <button v-if="actionText" class="brand-button text-sm" @click="emit('action')">{{ actionText }}</button>
   </div>
 </template>
-<script setup lang="ts">
+<script setup>
 import { Search } from '@element-plus/icons-vue'
-withDefaults(defineProps<{ title?: string; description?: string; actionText?: string; icon?: any }>(), { title: '暂无数据', description: '这里暂时没有内容', icon: Search })
-const emit = defineEmits<{ action: [] }>()
+defineProps({ title: { type: String, default: '暂无数据' }, description: { type: String, default: '这里暂时没有内容' }, actionText: String, icon: { type: [Object, Function], default: Search } })
+const emit = defineEmits(['action'])
 </script>
