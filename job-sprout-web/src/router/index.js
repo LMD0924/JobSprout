@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { useUserStore } from '../store/user';
 const routes = [
     { path: '/', redirect: '/intro' },
-    { path: '/intro', name: 'Intro', component: () => import('../views/home/index.vue'), meta: { public: true, title: '职芽 - 介绍' } },
+    { path: '/intro', name: 'Intro', component: () => import('../views/intro/intro.vue'), meta: { public: true, title: '职芽 - 介绍' } },
     { path: '/login', name: 'Login', component: () => import('../views/login/index.vue'), meta: { public: true, title: '登录' } },
     { path: '/register', name: 'Register', component: () => import('../views/register/index.vue'), meta: { public: true, title: '注册' } },
     { path: '/job/list', name: 'JobList', component: () => import('../views/job/list.vue'), meta: { public: true, title: '职位列表' } },
