@@ -1,5 +1,8 @@
-server:
-  port: 8500
+jwt:
+  secret: JobSproutJwtSecretKeyChangeInProduction2026
+  expire: 604800000
+  header: Authorization
+  prefix: "Bearer "
 
 spring:
   main:
@@ -32,6 +35,9 @@ spring:
         - id: resume-service
           uri: lb://job-sprout-resume
           predicates: [Path=/api/resume/**]
+        - id: apply-service
+          uri: lb://job-sprout-resume
+          predicates: [Path=/api/apply/**]
         - id: message-service
           uri: lb://job-sprout-message
           predicates: [Path=/api/message/**]

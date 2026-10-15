@@ -49,3 +49,47 @@ INSERT INTO job_category (name,sort) VALUES ('Java开发',1),('前端开发',2),
 INSERT INTO student_info (user_id,school,major,education,graduation_year) SELECT id,'示例大学','软件工程','本科',2027 FROM sys_user WHERE username='student01' AND NOT EXISTS (SELECT 1 FROM student_info);
 INSERT INTO company_info (user_id,company_name,industry,address,audit_status) SELECT id,'职芽科技有限公司','互联网','上海','APPROVED' FROM sys_user WHERE username='company01' AND NOT EXISTS (SELECT 1 FROM company_info);
 INSERT INTO job (company_id,category_id,title,description,requirements,salary_min,salary_max,city,status,publish_time) SELECT c.id,1,'Java开发实习生','参与后端服务开发，协助完成接口设计与测试。','熟悉 Java，了解 Spring Boot，有良好学习能力。',3000,5000,'上海','PUBLISHED',NOW() FROM company_info c WHERE c.company_name='职芽科技有限公司' AND NOT EXISTS (SELECT 1 FROM job);
+
+-- 简历表
+CREATE TABLE `resume` (
+                          `id` BIGINT NOT NULL AUTO_INCREMENT,
+                          `user_id` BIGINT NOT NULL COMMENT '学生用户ID',
+                          `real_name` VARCHAR(50) NOT NULL COMMENT '姓名',
+                          `gender` TINYINT DEFAULT 0 COMMENT '0未知 1男 2女',
+                          `birthday` DATE DEFAULT NULL,
+                          `phone` VARCHAR(20) DEFAULT NULL,
+                          `email` VARCHAR(100) DEFAULT NULL,
+                          `education` VARCHAR(50) DEFAULT NULL COMMENT '学历',
+                          `school` VARCHAR(100) DEFAULT NULL COMMENT '学校',
+                          `major` VARCHAR(100) DEFAULT NULL COMMENT '专业',
+                          `graduation_year` VARCHAR(10) DEFAULT NULL COMMENT '毕业年份',
+                          `skills` VARCHAR(500) DEFAULT NULL COMMENT '技能，逗号分隔',
+                          `self_intro` TEXT COMMENT '自我介绍',
+                          `project_experience` TEXT COMMENT '项目经历',
+                          `internship_experience` TEXT COMMENT '实习经历',
+                          `avatar` VARCHAR(255) DEFAULT NULL,
+                          `is_default` TINYINT DEFAULT 1 COMMENT '是否默认简历',
+                          `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
+                          `update_time` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                          `deleted` TINYINT DEFAULT 0,
+                          PRIMARY KEY (`id`),
+                          KEY `idx_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='简历表';
+
+-- 投递记录表
+CREATE TABLE `job_apply` (
+                             `id` BIGINT NOT NULL AUTO_INCREMENT,
+                             `job_id` BIGINT NOT NULL COMMENT '职位ID',
+                             `user_id` BIGINT NOT NULL COMMENT '学生用户ID',
+                             `resume_id` BIGINT NOT NULL COMMENT '简历ID',
+                             `company_id` BIGINT NOT NULL COMMENT '企业用户ID',
+                             `status` TINYINT DEFAULT 0 COMMENT '0待处理 1已查看 2通过 3拒绝',
+                             `remark` VARCHAR(500) DEFAULT NULL COMMENT '企业备注',
+                             `apply_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
+                             `update_time` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                             `deleted` TINYINT DEFAULT 0,
+                             PRIMARY KEY (`id`),
+                             KEY `idx_job_id` (`job_id`),
+                             KEY `idx_user_id` (`user_id`),
+                             KEY `idx_company_id` (`company_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='投递记录表';
