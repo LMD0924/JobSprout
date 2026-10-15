@@ -1,7 +1,5 @@
-<template><div class="mx-auto max-w-4xl py-16"><div class="surface-card text-center"><h1 class="text-2xl font-black">{{ title }}</h1><p class="mt-3 text-slate-500">页面将在下一批实现，当前路由已就绪。</p></div></div></template>
-<script setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-const route = useRoute()
-const title = computed(() => String(route.meta.title || '职芽 JobSprout'))
-</script>
+<template>
+  <div class="min-h-screen p-10" style="background:var(--bg);color:var(--text)">
+    <div class="card mx-auto max-w-xl rounded-3xl p-10 text-center"><h1 class="text-2xl font-black">功能建设中</h1><p class="mt-3 muted">这个模块正在完善，先回到工作台继续探索吧。</p><router-link to="/home" class="btn-brand mt-7 inline-block rounded-2xl px-5 py-3 text-sm font-bold">返回工作台</router-link></div>
+  </div>
+</template>
